@@ -9,7 +9,6 @@
    visibility: hidden;
    transition: 0.3s all ease-in-out;
 
-
    &__opacity {
       top: 0;
       left: 0;
@@ -20,7 +19,6 @@
       height: 100%;
       opacity: 0;
       transition: 0.2s opacity ease-in-out;
-
    }
 
    & .cart__block {
@@ -89,7 +87,6 @@
          margin-bottom: 20px;
          position: relative;
 
-
          &::after {
             content: '';
             position: absolute;
@@ -101,7 +98,6 @@
             height: 100%;
             border-bottom: 1px dashed #DFDFDF
          }
-
 
          & h5 {
             font-size: 16px;
@@ -130,7 +126,6 @@
       }
 
       & button {
-
          & img {
             transform: rotate(180deg);
             transition: transform 0.3s ease-in;
@@ -146,12 +141,10 @@
 
 
    & .cart__block {
-
       & .cart__empty {
          text-align: center;
          width: 285px;
          margin: 35% auto;
-
 
          &__img {
             animation: moveImg 0.6s ease-in-out infinite;
@@ -170,14 +163,9 @@
             opacity: 0.4;
             margin-bottom: 40px;
          }
-
       }
-
    }
-
 }
-
-
 
 .green__button {
    position: relative;
@@ -204,7 +192,6 @@
    }
 
    &:disabled {
-      // animation: button-loading 0.6s ease-in-out infinite;
       background-color: #bebebe !important;
       cursor: default;
    }
@@ -222,8 +209,6 @@
    }
 }
 
-
-
 .visible {
    visibility: visible;
    opacity: 1;
@@ -234,7 +219,5 @@
 }
 
 .cart__active {
-
    transform: translateX(0) !important;
-
 }

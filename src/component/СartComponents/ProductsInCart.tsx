@@ -1,42 +1,38 @@
 import axios from "axios";
 import { useCart } from '../../hooks/useCart';
+import { Sneaker } from "../../types/types";
 
+interface ProductsInCartReady {
+   orderReady: () => void
+}
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-export const ProductsInCart = ({ orderReady }) => {
-
+export const ProductsInCart: React.FC<ProductsInCartReady> = ({ orderReady }) => {
    const { cartProducts, onRemoveProduct, setCartProducts, setOrders, totalPrice } = useCart()
 
-   let totalTax = Math.round(totalPrice * 0.07);
+   let totalTax = Math.round(Number(totalPrice) * 0.07);
 
    const onClickOrder = async () => {
 
       try {
-         setOrders(prev => [...prev, ...cartProducts])
+         setOrders((prev: Sneaker[]) => [...prev, ...cartProducts])
          for (let i = 0; i < cartProducts.length; i++) {
             await axios.delete('https://63d8f12f74f386d4efe13610.mockapi.io/cart/' + cartProducts[i].id);
             await delay(100);
          }
          orderReady();
          setCartProducts([]);
-
-
       } catch (error) {
          alert('Помилка при створенні замовлення');
          console.error(error)
       }
-
-
    }
-
-
 
    return (
       <>
          <div className="product__list">
-            {cartProducts.map((product) => {
+            {cartProducts?.map((product: Sneaker) => {
                return <div key={product.id} className="product">
                   <img className="product__img" src={product.img} alt="" />
                   <div className="product__info">
@@ -66,4 +62,3 @@ export const ProductsInCart = ({ orderReady }) => {
       </>
    )
 }
-

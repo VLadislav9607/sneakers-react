@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { ProductsInCart } from './ProductsInCart';
 import { CartReady } from './CartReady';
+import './cart.scss';
+import { Sneaker } from '../../types/types';
 
-import './cart.scss'
+interface CartProps {
+   onToggleCart: () => void,
+   cartProducts: Sneaker[],
+   toggleCart: boolean
+}
 
-export const Cart = ({ onToggleCart, cartProducts, toggleCart }) => {
-
+export const Cart: React.FC<CartProps> = ({ onToggleCart, cartProducts, toggleCart }) => {
    const [createOrder, setCreateOrder] = useState(false);
 
    const orderReady = () => {
@@ -13,7 +18,6 @@ export const Cart = ({ onToggleCart, cartProducts, toggleCart }) => {
    }
 
    function renderProductsInCart() {
-
       return cartProducts.length !== 0
          ? <ProductsInCart
             orderReady={orderReady}
@@ -45,7 +49,4 @@ export const Cart = ({ onToggleCart, cartProducts, toggleCart }) => {
          </div>
       </div>
    )
-
 }
-
-

@@ -1,4 +1,9 @@
-export const CartReady = ({ onToggleCart, orderReady }) => {
+interface CartReadyProps {
+   onToggleCart: () => void,
+   orderReady: () => void,
+}
+
+export const CartReady: React.FC<CartReadyProps> = ({ onToggleCart, orderReady }) => {
    return (
       <div className="cart__empty">
          <img width={83} height={120} src="img/complete-order.jpg" alt="" />
@@ -14,4 +19,3 @@ export const CartReady = ({ onToggleCart, orderReady }) => {
       </div>
    )
 }
-

@@ -1,23 +1,24 @@
-import { useState } from "react";
-
+import { FC, useState } from "react";
+import { Sneaker } from "../../types/types";
 import Card from "../Card/Card";
 import Skeleton from "../skeleton/Skeleton";
 
-const Home = ({ products, loadedProducts }) => {
+interface HomeProps {
+   products: Sneaker[],
+   loadedProducts: boolean
+}
 
-
+const Home: FC<HomeProps> = ({ products, loadedProducts }) => {
    const [search, setSearch] = useState('');
-
 
    const RenderItems = () => {
       return products.filter(obj => obj.name.toLowerCase().includes(search.toLowerCase())).map(item => {
          return <Card
-            key={item.name}
+            key={item.id}
             product={item}
             favorited={true}
             showFavorite={true}                   
             showCheck={true}                  
-
          />
       })
    }

@@ -1,6 +1,6 @@
 import './skeleton.scss'
 
-const Skeleton = () => {
+const Skeleton: React.FC = () => {
    return (
       <>
          <div className="loading__block">

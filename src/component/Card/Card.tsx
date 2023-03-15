@@ -1,22 +1,28 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, FC } from 'react';
 import MainContext from "../../context";
+import { IMainContext } from '../../types/types';
+import { Sneaker } from '../../types/types';
+import './card.scss';
 
-import './card.scss'
+interface CardProps {
+   key: number,
+   product: Sneaker,
+   favorited?: boolean,
+   showFavorite: boolean,
+   showCheck: boolean
+}
 
-const Card = ({ product, favorited = false, showFavorite, showCheck }) => {
-
-   const { cartProducts, onAddProductInCart, onAddFavorite } = useContext(MainContext)
-
-   const { name, price, img, id } = product;
-
+const Card: FC<CardProps> = ({ product, favorited = false, showFavorite, showCheck }) => {
+   const { cartProducts, onAddProductInCart, onAddFavorite } = useContext(MainContext) as IMainContext;
+   const { name, price, img } = product;
    const [isFavorite, setIsFavorite] = useState(favorited)
 
    function onFavoriteChecked() {
       setIsFavorite(!isFavorite)
-      onAddFavorite(product, id)
+      onAddFavorite(product)
    }
 
-   let onCheck = cartProducts.some(productInCart => productInCart.name === name);
+   let onCheck = cartProducts.some((productInCart: Sneaker) => productInCart.name === name);
 
    return (
       <div className="card">

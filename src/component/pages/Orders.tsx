@@ -1,9 +1,12 @@
 import Card from "../Card/Card";
 import { Link } from "react-router-dom";
+import { Sneaker } from "../../types/types";
 
-const Orders = ({ orders }) => {
+interface OrdersProps {
+   orders: Sneaker[]
+}
 
-
+const Orders: React.FC<OrdersProps> = ({ orders }) => {
    return (
       <>
          {
@@ -16,10 +19,10 @@ const Orders = ({ orders }) => {
                   <div className="favorites__products">
                      {orders.map(item => {
                         return <Card
-                           key={item.name}
+                           key={item.id}
                            product={item}
-                           showFavorite={false} 
-                           showCheck={false}                  
+                           showFavorite={false}
+                           showCheck={false}
                         />
                      })}
                   </div>
